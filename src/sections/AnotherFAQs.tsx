@@ -24,12 +24,12 @@ const AnotherFAQs = () => {
           </div>
           
           <div className="space-y-4 text-right flex flex-col">
-            <ShinyText className="lg:text-6xl font-bold sm:text-4xl">Software</ShinyText>
-            <ShinyText className="lg:text-6xl font-bold sm:text-4xl">Frontend</ShinyText>
-            <ShinyText className="lg:text-6xl font-bold sm:text-4xl">Backend</ShinyText>
-            <ShinyText className="lg:text-6xl font-bold sm:text-4xl">Research</ShinyText>
-            <ShinyText className="lg:text-6xl font-bold sm:text-4xl">Ui & Ux</ShinyText>
-            <ShinyText className="lg:text-6xl font-bold sm:text-4xl">Web Design</ShinyText>
+            <ShinyText className="lg:text-6xl font-bold sm:text-3xl">Software</ShinyText>
+            <ShinyText className="lg:text-6xl font-bold sm:text-3xl">Frontend</ShinyText>
+            <ShinyText className="lg:text-6xl font-bold sm:text-3xl">Backend</ShinyText>
+            <ShinyText className="lg:text-6xl font-bold sm:text-3xl">Research</ShinyText>
+            <ShinyText className="lg:text-6xl font-bold sm:text-3xl">Ui & Ux</ShinyText>
+            <ShinyText className="lg:text-6xl font-bold sm:text-3xl">Web Design</ShinyText>
           </div>
         </div>
       </div>
