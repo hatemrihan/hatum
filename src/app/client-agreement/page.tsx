@@ -280,11 +280,12 @@ const ClientAgreementPage = () => {
       </section>
 
       {/* WebGL Script */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            // WebGL Background Script
-            if (typeof window !== 'undefined') {
+      {typeof window !== 'undefined' && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // WebGL Background Script
+              if (typeof window !== 'undefined' && typeof document !== 'undefined') {
               const script = document.createElement('script');
               script.src = 'https://cdn.jsdelivr.net/npm/ogl@0.0.82/dist/ogl.umd.js';
               script.onload = function() {
@@ -341,6 +342,7 @@ renderer.render({ scene: null, camera });
           `,
         }}
       />
+      )}
     </div>
   );
 };
