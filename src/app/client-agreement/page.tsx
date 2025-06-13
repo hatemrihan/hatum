@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, MouseEvent } from "react";
 import { motion, useAnimate } from "framer-motion";
-import { SimpleThemeToggle } from '@/components/SimpleThemeToggle';
+import { SimpleThemeToggle } from '../../components/SimpleThemeToggle';
 import Link from 'next/link';
 
 const navItems = [

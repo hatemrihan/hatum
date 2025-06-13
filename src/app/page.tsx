@@ -1,12 +1,12 @@
 "use client";
 
 
-import AnotherHeader from "@/sections/AnotherHeader";
+import AnotherHeader from "../sections/AnotherHeader";
 
-import Faqs from "@/sections/Faqs";
-import Footer from "@/sections/Footer";
-import New from "@/sections/New";
-import Projects from "@/sections/Projects";
+import Faqs from "../sections/Faqs";
+import Footer from "../sections/Footer";
+import New from "../sections/New";
+import Projects from "../sections/Projects";
 
 
 

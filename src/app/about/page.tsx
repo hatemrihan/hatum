@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import PageLoader from '../../components/PageLoader';
-import NewFooter from '@/sections/NewFooter';
-import NewPart from '@/sections/NewPart';
+import NewFooter from '../../sections/NewFooter';
+import NewPart from '../../sections/NewPart';
 
 // Animated Counter Hook
 const useCounter = (end: number, duration = 5000, shouldStart = false) => {
