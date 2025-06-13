@@ -48,6 +48,8 @@ const AnotherHeader: FC = () => {
 
   // Initialize navigation to closed state on mount and after page refresh
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     // Ensure nav starts closed
     setIsOpen(false);
     
@@ -67,6 +69,8 @@ const AnotherHeader: FC = () => {
   }, [navScope]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     if (isOpen) {
       navAnimate(navScope.current, {
         height: "100vh"
@@ -89,6 +93,9 @@ const AnotherHeader: FC = () => {
     e.preventDefault();
     setIsOpen(false);
     const url = new URL(e.currentTarget.href);
+    
+    if (typeof window === 'undefined') return;
+    
     // Always navigate to /about if that's the link
     if (url.pathname === '/about') {
       window.location.href = '/about';
@@ -134,7 +141,9 @@ const AnotherHeader: FC = () => {
  
   const handleLoaderComplete = () => {
     setShowLoader(false);
-    window.location.href = '/about';
+    if (typeof window !== 'undefined') {
+      window.location.href = '/about';
+    }
   };
 
   return (
@@ -189,6 +198,8 @@ const AnotherHeader: FC = () => {
                     className="relative text-black dark:text-white hover:text-black/70 dark:hover:text-white/70 transition-colors duration-300 text-base font-medium py-2 group"
                     onClick={(e) => {
                       e.preventDefault();
+                      if (typeof window === 'undefined') return;
+                      
                       if (href === '/about') {
                         window.location.href = '/about';
                         return;

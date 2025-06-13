@@ -75,6 +75,8 @@ const PricingPage = () => {
   // Add a useEffect to update the time and temperature dynamically
   useEffect(() => {
     function updateTimeAndTemp() {
+      if (typeof window === 'undefined') return;
+      
       const now = new Date();
       // Egypt is UTC+2
       const egyptTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Cairo' }));
@@ -356,6 +358,8 @@ const ProjectShowcaseSection = () => {
   };
 
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeOverlay();
     };

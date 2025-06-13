@@ -37,6 +37,8 @@ const ClientAgreementPage = () => {
 
   // Initialize navigation to closed state on mount and after page refresh
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     // Ensure nav starts closed
     setIsOpen(false);
     
@@ -56,6 +58,8 @@ const ClientAgreementPage = () => {
   }, [navScope]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     if (isOpen) {
       navAnimate(navScope.current, {
         height: "100vh"
@@ -80,16 +84,18 @@ const ClientAgreementPage = () => {
     const url = new URL(e.currentTarget.href);
     
     // Handle external routes (like /about, /client-agreement)
-    if (url.pathname !== window.location.pathname) {
+    if (typeof window !== 'undefined' && url.pathname !== window.location.pathname) {
       window.location.href = url.href;
       return;
     }
     
     // Handle internal hash navigation
     const hash = url.hash;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    target.scrollIntoView({behavior:'smooth'});
+    if (typeof window !== 'undefined') {
+      const target = document.querySelector(hash);
+      if (!target) return;
+      target.scrollIntoView({behavior:'smooth'});
+    }
   }
 
   const toggleMenu = () => {
@@ -172,15 +178,17 @@ const ClientAgreementPage = () => {
                       const url = new URL(e.currentTarget.href);
                       
                       // Handle external routes (like /about, /client-agreement)
-                      if (url.pathname !== window.location.pathname) {
+                      if (typeof window !== 'undefined' && url.pathname !== window.location.pathname) {
                         window.location.href = url.href;
                         return;
                       }
                       
                       // Handle internal hash navigation
                       const hash = url.hash;
-                      const target = document.querySelector(hash);
-                      if (target) target.scrollIntoView({behavior:'smooth'});
+                      if (typeof window !== 'undefined') {
+                        const target = document.querySelector(hash);
+                        if (target) target.scrollIntoView({behavior:'smooth'});
+                      }
                     }}
                   >
                     {label}
