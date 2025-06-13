@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.png',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className={cn(`antialiased bg-stone-100 dark:bg-black text-black dark:text-white transition-colors duration-300 ${archivo.variable} font-sans`)}>

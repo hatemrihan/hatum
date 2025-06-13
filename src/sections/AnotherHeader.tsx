@@ -45,6 +45,30 @@ const AnotherHeader: FC = () => {
     setMounted(true);
   }, []);
 
+  // Force video playback on mobile
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+      // Force play on iOS
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(() => {
+          // Fallback if autoplay fails
+          console.log('Video autoplay failed, user interaction required');
+        });
+      });
+      
+      // Handle touch events for iOS
+      const playVideo = () => {
+        video.play().catch(() => {});
+        document.removeEventListener('touchstart', playVideo);
+      };
+      
+      document.addEventListener('touchstart', playVideo, { once: true });
+    });
+  }, []);
+
   // Initialize navigation to closed state on mount and after page refresh
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -214,7 +238,7 @@ const AnotherHeader: FC = () => {
               {/* Mobile Menu Button - Always Visible on Top */}
               <div className="lg:hidden flex items-center">
                 <button 
-                  className="text-black dark:text-white font-black text-lg uppercase tracking-wider hover:opacity-70 transition-opacity duration-300 relative z-10 px-2 py-1" 
+                  className="text-black dark:text-white font-black text-base sm:text-lg uppercase tracking-wider hover:opacity-70 transition-opacity duration-300 relative z-10 px-3 py-2 min-w-[60px] min-h-[44px] flex items-center justify-center" 
                   onClick={toggleMenu}
                   aria-label={isOpen ? 'Close menu' : 'Open menu'}
                 >
@@ -232,9 +256,9 @@ const AnotherHeader: FC = () => {
           {/* Hero Text */}
           <div className="text-center mb-8 lg:mb-16 w-full">
             <motion.h1 
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase leading-none mb-4 lg:mb-8 w-full"
+              className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black uppercase leading-none mb-4 lg:mb-8 w-full"
               style={{ 
-                letterSpacing: '0.1em',
+                letterSpacing: '0.05em',
                 wordBreak: 'keep-all',
                 overflowWrap: 'normal'
               }}
@@ -246,7 +270,7 @@ const AnotherHeader: FC = () => {
             </motion.h1>
             
             <motion.h2 
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wider mb-4 lg:mb-8"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold uppercase tracking-wider mb-4 lg:mb-8"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -260,7 +284,7 @@ const AnotherHeader: FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-6 lg:mb-8 text-black/80 dark:text-white/80">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-6 lg:mb-8 text-black/80 dark:text-white/80 px-2 sm:px-0">
                 The future won't wait, and neither will we. We combine human judgment with AI execution to{" "}
                 <span className="text-black dark:text-white font-semibold">build systems that get things done</span> - faster, smarter, and at scale.
               </p>
@@ -287,7 +311,7 @@ const AnotherHeader: FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            <div className="relative aspect-[4/5] sm:aspect-[3/2] lg:aspect-[16/9] overflow-hidden shadow-2xl rounded-lg">
+            <div className="relative aspect-[3/4] xs:aspect-[4/5] sm:aspect-[3/2] md:aspect-[16/10] lg:aspect-[16/9] overflow-hidden shadow-2xl rounded-lg">
               <video
                 className="w-full h-full object-cover"
                 autoPlay
@@ -295,10 +319,12 @@ const AnotherHeader: FC = () => {
                 loop
                 playsInline
                 controls={false}
-                preload="auto"
+                preload="metadata"
+                webkit-playsinline="true"
+                x5-playsinline="true"
               >
-                <source src="https://ext.same-assets.com/3527148141/645958585.octet-stream" type="video/webm" />
                 <source src="https://ext.same-assets.com/3527148141/645958585.octet-stream" type="video/mp4" />
+                <source src="https://ext.same-assets.com/3527148141/645958585.octet-stream" type="video/webm" />
                 Your browser does not support the video tag.
               </video>
               

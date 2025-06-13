@@ -4,16 +4,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import '../assets/Fonts/WEB/css/panchang.css';
 
-// Import all images
-import iflaggImage from '../assets/images/iflagg-image.png';
-import iflagggImage from '../assets/images/iflaggg-image.png';
-import naderrImage from '../assets/images/naderr-image.png';
-import naderrrImage from '../assets/images/naderrr-image.png';
-import faraggImage from '../assets/images/faragg-image.png';
-import faragImage from '../assets/images/farag-image.png';
-import eleveImage from '../assets/images/eleve-image.png';
-import eleveeImage from '../assets/images/elevee-image.png';
-import eleveeeImage from '../assets/images/eleveee-image.png';
+// Using public paths for images (more reliable for Next.js)
 
 interface Project {
   title: string;
@@ -35,14 +26,14 @@ const Projects = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   
-  // 4 Projects with imported images and URLs
+  // 4 Projects with public image paths and URLs
   const projects: Project[] = [
    
     {
       title: "NaderEmad",
       mainImage: "/videos/nadervid.mp4",
-      leftImage: naderrImage,
-      rightImage: naderrrImage,
+      leftImage: "/images/naderr-image.png",
+      rightImage: "/images/naderrrr-image.png",
       description: "Developed a unique portfolio website for a talented Coach, designed to showcase his coaching services and expertise, everything is customized and unique for Coach Nader.",
       url: "https://nader-emad.vercel.app/",
       isVideo: true
@@ -50,26 +41,26 @@ const Projects = () => {
     {
       title: "Farag",
       mainImage: "/videos/scene.mp4",
-      leftImage: faraggImage,
-      rightImage: faragImage,
+      leftImage: "/images/faragg-image.png",
+      rightImage: "/images/farag-image.png",
       description: "Developed a unique portoflio for a talented graphic designer and photographer, this website is showcase two sections one for his work showing his art and the other for shooting images,so  happy to do a masterpiece customized for him.",
       url: "https://faragg.netlify.app/",
       isVideo: true
     },
     {
       title: "IFLAG",
-      mainImage: "/videos/iflag.MP4",
-      leftImage: iflaggImage,
-      rightImage: iflagggImage,
+      mainImage: "/videos/iflag.mp4",
+      leftImage: "/images/iflagg-image.png",
+      rightImage: "/images/iflaggg-image.png",
       description: "Developed a responsive well enahnced,unique and well UI/UX live website, Calisthenics club based in Cairo,Egypt. where the user can see the club's events,classes, reservations and more.",
       url: "https://iflaggg.vercel.app/",
       isVideo: true
     },
     {
       title: "Eleve",
-      mainImage: eleveeeImage,
-      leftImage: eleveImage,
-      rightImage: eleveeImage,
+      mainImage: "/images/eleveee-image.png",
+      leftImage: "/images/eleve-image.png",
+      rightImage: "/images/elevee-image.png",
       description: " what's fascinating about this project? It's not just another admin dashboard – it's a complete e-commerce ecosystem that solves real business problems I see companies struggling with every day. Here's what makes this special:  Business Intelligence Most e-commerce platforms give you basic order lists. We built something that actually understands your business. The dashboard doesn't just show you numbers – it shows you patterns. Revenue trends, customer behavior, product performance... it's like having a business analyst working 24/7. The Ambassador Program Integration This is where it gets interesting. We didn't just build affiliate tracking – we built a complete relationship management system. Every ambassador has their own journey, their own analytics, their own performance metrics. It's like CRM meets affiliate marketing, and it's beautiful. Smart Operational Features Here's something most developers miss: we built the export functionality specifically for shipping companies. No unit prices, no coupon codes – just the data they need. That's not coding, that's understanding business flow.  User Experience That Actually Works Dark mode isn't just trendy – it's practical for people managing orders at 2 AM. Mobile responsiveness isn't just about looking good – it's about checking orders while you're away from your desk. Every pixel serves a purpose. Technical Sophistication Next.js 14 with App Router, real-time updates, dynamic components, proper state management... but here's the thing – the tech stack isn't the hero. The business logic is. We built something that scales not just technically, but operationally.  What I'm Most Proud Of The system thinks ahead. It doesn't just manage your current orders – it helps you understand your business trajectory. Want to know which products to restock? Which ambassadors to invest in? Which regions are performing best? It's all there. The Real Value? Most e-commerce tools are built by developers who've never run an online business. This was built by someone who understands that every click costs time, every extra step costs money, and every insight drives growth. That's not just development – that's partnership.",
       url: "https://elevee.netlify.app/",
       isVideo: false
@@ -127,6 +118,24 @@ const Projects = () => {
       if (e.key === 'Escape') closeOverlay();
     };
     document.addEventListener('keydown', handleKeyDown);
+    
+    // Force video playback on mobile
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(() => {
+          console.log('Video autoplay failed, user interaction required');
+        });
+      });
+      
+      const playVideo = () => {
+        video.play().catch(() => {});
+        document.removeEventListener('touchstart', playVideo);
+      };
+      
+      document.addEventListener('touchstart', playVideo, { once: true });
+    });
+    
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
@@ -147,7 +156,9 @@ const Projects = () => {
           loop
           playsInline
           controls={false}
-          preload="auto"
+          preload="metadata"
+          webkit-playsinline="true"
+          x5-playsinline="true"
         >
           <source src={project.mainImage} type="video/mp4" />
           Your browser does not support the video tag.
@@ -201,8 +212,8 @@ const Projects = () => {
                   className="bg-transparent border-0 p-0 text-black dark:text-white font-['PP_Neue_Montreal',Arial,sans-serif] cursor-pointer w-full text-left"
                   onClick={() => openOverlay(index)}
                 >
-                  <h2 className="main-title text-lg sm:text-xl md:text-2xl font-medium tracking-tight relative
-                    after:absolute after:content-[''] after:top-1/2 after:right-[-1rem] sm:after:right-[-1.5rem] after:w-4 sm:after:w-6 after:h-0.5 
+                  <h2 className="main-title text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-tight relative
+                    after:absolute after:content-[''] after:top-1/2 after:right-[-0.75rem] sm:after:right-[-1rem] md:after:right-[-1.5rem] after:w-3 sm:after:w-4 md:after:w-6 after:h-0.5 
                     after:rounded-full after:bg-current after:opacity-0 after:transition-all after:duration-500 
                     after:transform after:translate-x-full after:scale-0 
                     group-hover:after:translate-x-0 group-hover:after:scale-100 group-hover:after:opacity-100 group-hover:after:w-2">
@@ -214,9 +225,9 @@ const Projects = () => {
           </ul>
         </motion.div>
         
-        {/* Images - Reduced sizing for better viewing */}
+        {/* Images - Better mobile sizing */}
         <motion.div 
-          className="relative h-[250px] sm:h-[300px] lg:h-[400px] order-2 lg:order-1"
+          className="relative h-[200px] xs:h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] order-2 lg:order-1"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8, delay: 0.3 }}

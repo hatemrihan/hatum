@@ -4,13 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import PricingLoader from '../../components/PricingLoader';
-import wmmImage from '../../assets/images/wmm-image.jpg';
-import wmmmImage from '../../assets/images/wmmm-image.jpg';
-import gumImage from '../../assets/images/gum-image.png';
-import gummImage from '../../assets/images/gumm-image.png';
-import nouraImage from '../../assets/images/noura-image.png';
-import nouraaImage from '../../assets/images/nouraa-image.png';
-import WMImage from '../../assets/images/WM-image.jpg';
+// Using public paths for images
 import Footer from '../../sections/Footer';
 
 interface Project {
@@ -288,8 +282,8 @@ const ProjectShowcaseSection = () => {
     {
       title: "Home Council",
       mainImage: "/videos/homes.mp4",
-      leftImage: gumImage,
-      rightImage: gummImage,
+      leftImage: "/images/gum-image.png",
+      rightImage: "/images/gumm-image.png",
       description: "Builiding and ready for sale ",
       isUrl: false,
       isVideo: true
@@ -297,18 +291,18 @@ const ProjectShowcaseSection = () => {
     {
       title: "nouraa",
       mainImage: "/videos/noura.mp4",
-      leftImage: nouraImage,
-      rightImage: nouraaImage,
-      description: "Developed a unique portoflio for a talented graphic designer and photographer, this website is showcase two sections one for his work showing his art and the other for shooting images,so  happy to do a masterpiece customized for him.",
+      leftImage: "/images/noura-image.png",
+      rightImage: "/images/nouraa-image.png",
+      description: "Nouraa e commerce shop, full ready.",
       isUrl: false,
       isVideo: true
     },
     {
       title: "WM",
-      mainImage: WMImage,
-      leftImage:wmmImage,
-      rightImage:wmmmImage,
-      description: "Developed a responsive well enahnced,unique and well UI/UX live website, Calisthenics club based in Cairo,Egypt. where the user can see the club's events,classes, reservations and more.",
+      mainImage: "/images/WM-image.jpg",
+      leftImage: "/images/wmm-image.jpg",
+      rightImage: "/images/wmmm-image.jpg",
+      description: "Portofolio well enahnced, unique and ready, full layout and ready to use.",
       isUrl: false,
       isVideo: false
     },
@@ -386,7 +380,9 @@ const ProjectShowcaseSection = () => {
           loop
           playsInline
           controls={false}
-          preload="auto"
+          preload="metadata"
+          webkit-playsinline="true"
+          x5-playsinline="true"
         >
           <source src={project.mainImage} type="video/mp4" />
           Your browser does not support the video tag.
@@ -398,6 +394,8 @@ const ProjectShowcaseSection = () => {
           src={getImageSrc(project.mainImage)} 
           alt={project.title} 
           className={className}
+          width={600}
+          height={400}
         />
       );
     }
@@ -546,6 +544,8 @@ const ProjectShowcaseSection = () => {
                      src={getImageSrc(project.leftImage)} 
                      alt="" 
                      className="w-full h-full object-cover rounded-lg" 
+                     width={300}
+                     height={250}
                    />
                  </div>
                </div>
@@ -555,6 +555,8 @@ const ProjectShowcaseSection = () => {
                      src={getImageSrc(project.rightImage)} 
                      alt="" 
                      className="w-full h-full object-cover rounded-lg" 
+                     width={300}
+                     height={250}
                    />
                  </div>
                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-black/90 dark:text-white/90">{project.description}</p>

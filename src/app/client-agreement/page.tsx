@@ -193,7 +193,7 @@ const ClientAgreementPage = () => {
               {/* Mobile Menu Button - Always Visible on Top */}
               <div className="lg:hidden flex items-center">
                 <button 
-                  className="text-black dark:text-white font-black text-lg uppercase tracking-wider hover:opacity-70 transition-opacity duration-300 relative z-10 px-2 py-1" 
+                  className="text-black dark:text-white font-black text-base sm:text-lg uppercase tracking-wider hover:opacity-70 transition-opacity duration-300 relative z-10 px-3 py-2 min-w-[60px] min-h-[44px] flex items-center justify-center" 
                   onClick={toggleMenu}
                   aria-label={isOpen ? 'Close menu' : 'Open menu'}
                 >
@@ -430,9 +430,9 @@ const AgreementCarousel = () => {
       transition={{ duration: 0.8, delay: 0.6 }}
     >
       <div className="relative">
-        {/* Mobile Layout - Split design like desktop */}
+        {/* Mobile Layout - Better responsive design */}
         <div className="lg:hidden">
-          <div className="relative min-h-[600px] sm:min-h-[700px] py-8 px-12 sm:px-16">
+          <div className="relative min-h-[70vh] sm:min-h-[80vh] py-6 px-4 sm:px-6">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -441,33 +441,34 @@ const AgreementCarousel = () => {
                   index < currentSlide ? 'opacity-0 -translate-x-full' : 'opacity-0 translate-x-full'
                 }`}
               >
-                <div className="flex flex-col sm:grid sm:grid-cols-12 gap-6 sm:gap-8 h-full pt-8 px-4 sm:px-8">
-                  {/* Left Side - Topic Title (Mobile) - Smaller space */}
-                  <div className="sm:col-span-4 flex-shrink-0">
-<div className="font-black uppercase leading-tight text-black dark:text-white mb-8 sm:mb-0 pr-4 sm:pr-6">
-  <div className="text-lg opacity-70 mb-2">{String(slide.id).padStart(2, '0')}</div>
-  {slide.title.split(' ').map((word, i) => (
-    <div key={i} className="leading-none text-sm sm:text-base">{word}</div>
-  ))}
-</div>
+                <div className="flex flex-col h-full pt-6 px-2 sm:px-4 overflow-y-auto">
+                  {/* Topic Title (Mobile) */}
+                  <div className="flex-shrink-0 mb-6">
+                    <div className="font-black uppercase leading-tight text-black dark:text-white">
+                      <div className="text-xl sm:text-2xl opacity-70 mb-2">{String(slide.id).padStart(2, '0')}</div>
+                      {slide.title.split(' ').map((word, i) => (
+                        <div key={i} className="leading-none text-lg sm:text-xl md:text-2xl">{word}</div>
+                      ))}
+                    </div>
                   </div>
                   
-                  {/* Right Side - Content (Mobile) - More space */}
-                  <div className="sm:col-span-8 flex-1 overflow-hidden">
-<div className="text-xs sm:text-sm leading-relaxed space-y-3 sm:space-y-4 text-black dark:text-white ml-4 sm:ml-6">
-  {slide.content}
-</div>
+                  {/* Content (Mobile) */}
+                  <div className="flex-1 overflow-y-auto">
+                    <div className="client-agreement-content text-sm sm:text-base leading-relaxed space-y-4 text-black dark:text-white pr-2">
+                      {slide.content}
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
 
-            {/* Navigation Arrows - Mobile (No Background) */}
+            {/* Navigation Arrows - Mobile */}
             <button
               onClick={prevSlide}
-              className="absolute -left-4 sm:-left-6 top-1/2 transform -translate-y-1/2 z-20
-   text-black dark:text-white p-2 sm:p-3
-   transition-all duration-200 hover:scale-110 hover:opacity-70"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-20
+                bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full
+                text-black dark:text-white p-3 sm:p-4
+                transition-all duration-200 hover:scale-110 hover:bg-black/20 dark:hover:bg-white/20"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -476,9 +477,10 @@ const AgreementCarousel = () => {
 
             <button
               onClick={nextSlide}
-              className="absolute -right-4 sm:-right-6 top-1/2 transform -translate-y-1/2 z-20
-   text-black dark:text-white p-2 sm:p-3
-   transition-all duration-200 hover:scale-110 hover:opacity-70"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20
+                bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full
+                text-black dark:text-white p-3 sm:p-4
+                transition-all duration-200 hover:scale-110 hover:bg-black/20 dark:hover:bg-white/20"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -554,13 +556,13 @@ const AgreementCarousel = () => {
           </div>
         </div>
 
-        {/* Slide Indicators - Smaller circles */}
-        <div className="flex justify-center -mt-36 space-x-1.5 ">
+        {/* Slide Indicators */}
+        <div className="flex justify-center mt-6 lg:-mt-36 space-x-2">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200 ${
+              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-200 ${
                 index === currentSlide 
                   ? 'bg-black dark:bg-white scale-125' 
                   : 'bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50'

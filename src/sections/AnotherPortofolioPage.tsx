@@ -1,11 +1,8 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-import holaImage from '../assets/images/hola-image.jpg'
-import boundImage from '../assets/images/bound-image.jpg';
 import useTextRevealAnimation from '../hooks/useTextRevealAnimation';
-import heroImage from '../assets/images/hero-image.jpg'
-import nadaImage from '../assets/images/nada-image.JPG'
+// Using public paths for images
 
 const AnotherPortofolioPage = () => {
   const {scope, entranceAnimation} =useTextRevealAnimation();
@@ -84,9 +81,11 @@ entranceAnimation();
               >
                 <a href="https://naderemad.netlify.app" target="_blank" rel="noopener noreferrer">
               <Image 
-                src={boundImage} 
+                src="/images/bound-image.jpg" 
                     alt="Nader Emad Portfolio" 
                     className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
+                    width={300}
+                    height={400}
               />
               </a>
               </motion.div>
@@ -112,9 +111,11 @@ entranceAnimation();
               >
                 <a href="https://iflagg.netlify.app" target="_blank" rel="noopener noreferrer">
               <Image 
-                src={holaImage} 
+                src="/images/hola-image.jpg" 
                     alt="Iflag Portfolio" 
                     className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
+                    width={300}
+                    height={400}
               />
               </a>
               </motion.div>
@@ -140,9 +141,11 @@ entranceAnimation();
               >
                 <a href="https://nadamahmoudd.wixstudio.com/nada" target="_blank" rel="noopener noreferrer">
               <Image 
-                src={nadaImage} 
+                src="/images/nada-image.JPG" 
                     alt="Nada Portfolio" 
                     className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
+                    width={300}
+                    height={400}
               />
               </a>
               </motion.div>
@@ -168,9 +171,11 @@ entranceAnimation();
               >
                 <a href="https://hatemrihan.github.io/TOMM-WEB/h.HTML?fbclid=PAZXh0bgNhZW0CMTEAAaYYRv6Z8j2U5HkWj2p4e6y7OVWsEcNQYfz9PA-SYYdgVTgyaRf_ly5luTY_aem_rphh00mGa1FsY07bJuMr4w" target="_blank" rel="noopener noreferrer">
               <Image 
-                src={heroImage} 
+                src="/images/hero-image.jpg" 
                     alt="Hatum Portfolio" 
                     className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
+                    width={300}
+                    height={400}
               />
               </a>
               </motion.div>

@@ -1,10 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
-import runImage from '../assets/images/run-image.JPG';
-import teamImage from '../assets/images/team-image.JPG';
-import photoImage from '../assets/images/photo-image.jpg';
-import teametnenImage from '../assets/images/teametnen-image.JPG';
+// Using public paths for images
 
 const PastSpread: React.FC = () => {
   const sectionRef = React.useRef(null);
@@ -59,9 +56,11 @@ const PastSpread: React.FC = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Image 
-                  src={runImage}
+                  src="/images/run-image.JPG"
                   alt="Large Past Image" 
                   className="w-full h-full object-cover hover:grayscale-0 grayscale transition-all duration-300 hover:scale-105"
+                  width={600}
+                  height={450}
                 />
               </motion.div>
             </motion.div>
@@ -79,9 +78,11 @@ const PastSpread: React.FC = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Image 
-                  src={photoImage}
+                  src="/images/photo-image.jpg"
                   alt="Past Image 2" 
                   className="w-full h-full object-cover hover:grayscale-0 grayscale transition-all duration-300 hover:scale-105"
+                  width={300}
+                  height={300}
                 />
               </motion.div>
             </motion.div>
@@ -99,9 +100,11 @@ const PastSpread: React.FC = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Image 
-                  src={teamImage} 
+                  src="/images/team-image.JPG" 
                   alt="Past Image 3" 
                   className="w-full h-full object-cover hover:grayscale-0 grayscale transition-all duration-300 hover:scale-105"
+                  width={300}
+                  height={300}
                 />
               </motion.div>
             </motion.div>
@@ -119,9 +122,11 @@ const PastSpread: React.FC = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Image 
-                  src={teametnenImage}
+                  src="/images/teametnen-image.JPG"
                   alt="Past Image 4" 
                   className="w-full h-full object-cover hover:grayscale-0 grayscale transition-all duration-300 hover:scale-105"
+                  width={300}
+                  height={300}
                 />
               </motion.div>
             </motion.div>
