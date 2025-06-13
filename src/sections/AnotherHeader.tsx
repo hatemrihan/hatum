@@ -53,8 +53,10 @@ const AnotherHeader: FC = () => {
     setIsOpen(false);
     
     // Prevent horizontal scrolling completely
-    document.body.style.overflowX = 'hidden';
-    document.documentElement.style.overflowX = 'hidden';
+    if (typeof document !== 'undefined') {
+      document.body.style.overflowX = 'hidden';
+      document.documentElement.style.overflowX = 'hidden';
+    }
     
     // Initialize nav height to 0
     if (navScope.current) {
@@ -62,8 +64,10 @@ const AnotherHeader: FC = () => {
     }
     
     return () => {
-      document.body.style.overflowX = 'auto';
-      document.documentElement.style.overflowX = 'auto';
+      if (typeof document !== 'undefined') {
+        document.body.style.overflowX = 'auto';
+        document.documentElement.style.overflowX = 'auto';
+      }
     };
   }, [navScope]);
 
@@ -78,13 +82,17 @@ const AnotherHeader: FC = () => {
         duration: 0.7,
       });
       // Prevent body scroll when nav is open
-      document.body.style.overflow = 'hidden';
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'hidden';
+      }
     } else {
       navAnimate(navScope.current, {
         height: 0
       });
       // Restore body scroll when nav is closed
-      document.body.style.overflow = 'auto';
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'auto';
+      }
     }
   }, [isOpen, navScope, navAnimate]);
 
