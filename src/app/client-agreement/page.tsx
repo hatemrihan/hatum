@@ -3,6 +3,7 @@
 import React, { useEffect, useState, MouseEvent } from "react";
 import { motion, useAnimate } from "framer-motion";
 import { SimpleThemeToggle } from '../../components/SimpleThemeToggle';
+
 import Link from 'next/link';
 
 const navItems = [
@@ -251,8 +252,6 @@ const ClientAgreementPage = () => {
                 preload="auto"
               >
                 <source src="/videos/octat.octet-stream" type="video/mp4" />
-                <source src="/videos/octat.octet-stream" type="video/webm" />
-                <source src="/videos/octat.octet-stream" />
                 Your browser does not support the video tag.
               </video>
               

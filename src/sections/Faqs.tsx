@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef } from 'react';
+import OptimizedVideo from '../components/OptimizedVideo';
 import Link from 'next/link';
 
 interface FAQItem {
@@ -97,7 +98,7 @@ const Faqs = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-black dark:text-white text-center max-w-4xl mx-auto">
-            based in Cairo and Riyadh and working worldwide with Software development and digital design.
+          Over two years of working worldwide, offering a range of creative and strategic websites.
           </p>
         </motion.div>
 
@@ -114,18 +115,16 @@ const Faqs = () => {
                          dark:from-gray-800 dark:via-gray-900 dark:to-blue-900/20 
                          p-6 lg:p-8 shadow-2xl shadow-blue-500/10 dark:shadow-blue-500/20">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-black/20 dark:shadow-black/40">
-              <video
+              <OptimizedVideo
+                src="https://ext.same-assets.com/2567977451/1444996367.mp4"
                 className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                playsInline={true}
                 controls={false}
                 preload="auto"
-              >
-                <source src="https://ext.same-assets.com/2567977451/1444996367.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              />
             </div>
           </div>
         </motion.div>

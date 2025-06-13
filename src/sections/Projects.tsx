@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import OptimizedVideo from '../components/OptimizedVideo';
 import '../assets/Fonts/WEB/css/panchang.css';
 
 // Using public paths for images (more reliable for Next.js)
@@ -149,20 +150,16 @@ const Projects = () => {
   const renderMedia = (project: Project, className: string) => {
     if (project.isVideo) {
       return (
-        <video
+        <OptimizedVideo
+          src={project.mainImage}
           className={className}
-          autoPlay
-          muted
-          loop
-          playsInline
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          playsInline={true}
           controls={false}
-          preload="metadata"
-          webkit-playsinline="true"
-          x5-playsinline="true"
-        >
-          <source src={project.mainImage} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          preload="auto"
+        />
       );
     } else {
       return (

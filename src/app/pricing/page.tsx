@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import PricingLoader from '../../components/PricingLoader';
+
 // Using public paths for images
 import Footer from '../../sections/Footer';
 
@@ -401,8 +402,7 @@ const ProjectShowcaseSection = () => {
           loop
           playsInline
           controls={false}
-          preload="metadata"
-          key={project.mainImage} // Force re-render if needed
+          preload="auto"
         >
           <source src={project.mainImage} type="video/mp4" />
           Your browser does not support the video tag.

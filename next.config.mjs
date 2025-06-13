@@ -34,6 +34,16 @@ const nextConfig = {
             test: /\.(png|jpg|jpeg|gif|svg|JPG|PNG)$/i,
             type: 'asset/resource',
         });
+        
+        // Optimize video loading
+        config.module.rules.push({
+            test: /\.(mp4|webm|ogg|avi|mov)$/i,
+            type: 'asset/resource',
+            generator: {
+                filename: 'videos/[name].[hash][ext]'
+            }
+        });
+        
         return config;
     },
     // Add trailing slashes for better compatibility

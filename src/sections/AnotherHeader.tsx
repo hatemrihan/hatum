@@ -3,6 +3,8 @@
 import { FC, useEffect, useState, MouseEvent } from "react";
 import { motion, useInView, useAnimate } from "framer-motion";
 import { SimpleThemeToggle } from '../components/SimpleThemeToggle';
+import OptimizedVideo from '../components/OptimizedVideo';
+import VideoPreloader from '../components/VideoPreloader';
 
 
 const navItems = [
@@ -157,8 +159,21 @@ const AnotherHeader: FC = () => {
     }
   };
 
+  // Preload videos for better performance
+  const videosToPreload = [
+    "/videos/about.mp4",
+    "/videos/homes.mp4", 
+    "/videos/noura.mp4",
+    "/videos/nadervid.mp4",
+    "/videos/scene.mp4", 
+    "/videos/iflag.mp4",
+    "https://ext.same-assets.com/3527148141/645958585.octet-stream",
+    "https://ext.same-assets.com/2567977451/1444996367.mp4"
+  ];
+
   return (
     <div className="overflow-x-hidden w-full">
+      <VideoPreloader videos={videosToPreload} />
     
       {/* Navigation Header */}
       <header className="relative w-full">
@@ -312,21 +327,16 @@ const AnotherHeader: FC = () => {
             transition={{ duration: 1, delay: 1 }}
           >
             <div className="relative aspect-[3/4] xs:aspect-[4/5] sm:aspect-[3/2] md:aspect-[16/10] lg:aspect-[16/9] overflow-hidden shadow-2xl rounded-lg">
-              <video
+              <OptimizedVideo
+                src="https://ext.same-assets.com/3527148141/645958585.octet-stream"
                 className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                playsInline={true}
                 controls={false}
-                preload="metadata"
-                webkit-playsinline="true"
-                x5-playsinline="true"
-              >
-                <source src="https://ext.same-assets.com/3527148141/645958585.octet-stream" type="video/mp4" />
-                <source src="https://ext.same-assets.com/3527148141/645958585.octet-stream" type="video/webm" />
-                Your browser does not support the video tag.
-              </video>
+                preload="auto"
+              />
               
               {/* Video Overlay - Updated for dark mode */}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-100/20 dark:from-black/20 via-transparent to-transparent pointer-events-none"></div>
