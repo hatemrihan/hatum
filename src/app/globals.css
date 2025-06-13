@@ -2,40 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mobile-first responsive improvements */
-@media (max-width: 480px) {
-  html {
-    font-size: 14px;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-  }
-  
-  body {
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  * {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-  }
-  
-  /* Ensure text doesn't get cut off */
-  p, div, span {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-  }
-  
-  /* Better video support for iOS */
-  video {
-    -webkit-playsinline: true;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-}
 
 .section{
    @apply py-24 md:py-32 lg:py-40
@@ -46,50 +12,6 @@
 }
 .word{
    @apply translate-y-full;
-}
-
-/* Ensure proper mobile viewport handling */
-@viewport {
-  width: device-width;
-  initial-scale: 1;
-  maximum-scale: 1;
-  user-scalable: no;
-}
-
-/* Mobile-specific improvements for client agreement */
-@media (max-width: 1023px) {
-  .client-agreement-content {
-    min-height: 70vh;
-    padding: 1rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .client-agreement-content p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    font-size: 0.875rem;
-  }
-  
-  .client-agreement-content strong {
-    font-weight: 600;
-    color: inherit;
-  }
-}
-
-/* Ensure images load properly */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Better touch targets for mobile */
-@media (max-width: 768px) {
-  button, a {
-    min-height: 44px;
-    min-width: 44px;
-  }
 }
 
 

@@ -284,7 +284,7 @@ const ProjectShowcaseSection = () => {
       mainImage: "/videos/homes.mp4",
       leftImage: "/images/gum-image.png",
       rightImage: "/images/gumm-image.png",
-      description: "Builiding and ready for sale ",
+      description: "Building and ready for sale ",
       isUrl: false,
       isVideo: true
     },
@@ -302,7 +302,7 @@ const ProjectShowcaseSection = () => {
       mainImage: "/images/WM-image.jpg",
       leftImage: "/images/wmm-image.jpg",
       rightImage: "/images/wmmm-image.jpg",
-      description: "Portofolio well enahnced, unique and ready, full layout and ready to use.",
+      description: "well enhanced Portfolio, unique and ready, full layout and ready to use.",
       isUrl: false,
       isVideo: false
     },
@@ -370,6 +370,27 @@ const ProjectShowcaseSection = () => {
     return imageObj;
   };
 
+  // Enhanced image renderer with error handling for deployment
+  const renderImage = (src: string, alt: string, className: string) => {
+    return (
+      <img 
+        src={getImageSrc(src)} 
+        alt={alt} 
+        className={className}
+        loading="lazy"
+        onError={(e) => {
+          // Fallback handling for deployment issues
+          const target = e.target as HTMLImageElement;
+          if (target.src.includes('.JPG')) {
+            target.src = target.src.replace('.JPG', '.jpg');
+          } else if (target.src.includes('.PNG')) {
+            target.src = target.src.replace('.PNG', '.png');
+          }
+        }}
+      />
+    );
+  };
+
   const renderMedia = (project: Project, className: string) => {
     if (project.isVideo) {
       return (
@@ -381,23 +402,14 @@ const ProjectShowcaseSection = () => {
           playsInline
           controls={false}
           preload="metadata"
-          webkit-playsinline="true"
-          x5-playsinline="true"
+          key={project.mainImage} // Force re-render if needed
         >
           <source src={project.mainImage} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       );
     } else {
-      return (
-        <img 
-          src={getImageSrc(project.mainImage)} 
-          alt={project.title} 
-          className={className}
-          width={600}
-          height={400}
-        />
-      );
+      return renderImage(project.mainImage, project.title, className);
     }
   };
 
@@ -438,13 +450,14 @@ const ProjectShowcaseSection = () => {
                  className="bg-transparent border-0 p-0 text-black dark:text-white font-['PP_Neue_Montreal',Arial,sans-serif] cursor-pointer w-full text-left"
                  onClick={() => openOverlay(index)}
                >
-                 <h2 className="main-title text-lg sm:text-xl md:text-2xl font-medium tracking-tight relative
-                   after:absolute after:content-[''] after:top-1/2 after:right-[-1rem] sm:after:right-[-1.5rem] after:w-4 sm:after:w-6 after:h-0.5 
-                   after:rounded-full after:bg-current after:opacity-0 after:transition-all after:duration-500 
-                   after:transform after:translate-x-full after:scale-0 
-                   group-hover:after:translate-x-0 group-hover:after:scale-100 group-hover:after:opacity-100 group-hover:after:w-2">
-                   {index === activeIndex ? "→ " : ""}{project.title}
-                 </h2>
+                                   <h2 className="main-title text-lg sm:text-xl md:text-2xl font-medium tracking-tight relative
+                    after:absolute after:content-[''] after:top-1/2 after:right-[-1rem] sm:after:right-[-1.5rem] after:w-4 sm:after:w-6 after:h-0.5 
+                    after:rounded-full after:opacity-0 after:transition-all after:duration-500 
+                    after:transform after:translate-x-full after:scale-0 
+                    group-hover:after:translate-x-0 group-hover:after:scale-100 group-hover:after:opacity-100 group-hover:after:w-2
+                    after:bg-transparent after:border-t-2 after:border-current">
+                    {index === activeIndex ? "→ " : ""}{project.title}
+                  </h2>
                </button>
              </motion.li>
            ))}
@@ -493,13 +506,14 @@ const ProjectShowcaseSection = () => {
                  className="bg-transparent border-0 p-0 font-['PP_Neue_Montreal',Arial,sans-serif] cursor-pointer text-right"
                  onClick={() => openOverlay(index)}
                >
-                 <h2 className="main-title text-xl xl:text-2xl 2xl:text-3xl font-medium tracking-tight relative
-                   after:absolute after:content-[''] after:top-1/2 after:left-[-1.5rem] after:w-6 after:h-0.5 
-                   after:rounded-full after:bg-current after:opacity-0 after:transition-all after:duration-500 
-                   after:transform after:translate-x-[-100%] after:scale-0 
-                   group-hover:after:translate-x-0 group-hover:after:scale-100 group-hover:after:opacity-100 group-hover:after:w-2">
-                   {project.title} {index === activeIndex ? " ←" : ""}
-                 </h2>
+                                   <h2 className="main-title text-xl xl:text-2xl 2xl:text-3xl font-medium tracking-tight relative
+                    after:absolute after:content-[''] after:top-1/2 after:left-[-1.5rem] after:w-6 after:h-0.5 
+                    after:rounded-full after:opacity-0 after:transition-all after:duration-500 
+                    after:transform after:translate-x-[-100%] after:scale-0 
+                    group-hover:after:translate-x-0 group-hover:after:scale-100 group-hover:after:opacity-100 group-hover:after:w-2
+                    after:bg-transparent after:border-t-2 after:border-current">
+                    {project.title} {index === activeIndex ? " ←" : ""}
+                  </h2>
                </button>
              </motion.li>
            ))}
@@ -538,29 +552,17 @@ const ProjectShowcaseSection = () => {
                </div>
              </div>
              <div className="overlay-row grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-8 lg:mb-12">
-               <div className="flex flex-col gap-4 lg:gap-6">
-                 <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
-                   <img 
-                     src={getImageSrc(project.leftImage)} 
-                     alt="" 
-                     className="w-full h-full object-cover rounded-lg" 
-                     width={300}
-                     height={250}
-                   />
-                 </div>
-               </div>
-               <div className="flex flex-col gap-4 lg:gap-6">
-                 <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
-                   <img 
-                     src={getImageSrc(project.rightImage)} 
-                     alt="" 
-                     className="w-full h-full object-cover rounded-lg" 
-                     width={300}
-                     height={250}
-                   />
-                 </div>
-                 <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-black/90 dark:text-white/90">{project.description}</p>
-               </div>
+                               <div className="flex flex-col gap-4 lg:gap-6">
+                  <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
+                    {renderImage(project.leftImage, `${project.title} left image`, "w-full h-full object-cover rounded-lg")}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4 lg:gap-6">
+                  <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
+                    {renderImage(project.rightImage, `${project.title} right image`, "w-full h-full object-cover rounded-lg")}
+                  </div>
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-black/90 dark:text-white/90">{project.description}</p>
+                </div>
              </div>
              {/* Navigation buttons - Mobile responsive */}
              <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 lg:pt-8 border-t border-black/10 dark:border-white/10">

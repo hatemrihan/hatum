@@ -23,6 +23,11 @@ const nextConfig = {
                 hostname: '**',
             },
         ],
+        // Add loader to prevent deployment issues
+        loader: 'default',
+        // Ensure proper handling of local images
+        dangerouslyAllowSVG: true,
+        contentDispositionType: 'attachment',
     },
     webpack: (config) => {
         config.module.rules.push({

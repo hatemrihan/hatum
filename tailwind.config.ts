@@ -9,9 +9,12 @@ const config: Config = {
     ],
     theme: {
     	screens: {
-    		sm: '375px',
-    		md: '768px',
-    		lg: '1200px'
+    		'xs': '320px',
+    		'sm': '375px',
+    		'md': '768px',
+    		'lg': '1024px',
+    		'xl': '1280px',
+    		'2xl': '1536px'
     	},
     	extend: {
     		fontFamily: {

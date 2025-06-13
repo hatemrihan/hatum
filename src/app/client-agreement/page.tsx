@@ -466,11 +466,10 @@ const AgreementCarousel = () => {
             <button
               onClick={prevSlide}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 z-20
-                bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full
-                text-black dark:text-white p-3 sm:p-4
-                transition-all duration-200 hover:scale-110 hover:bg-black/20 dark:hover:bg-white/20"
+                text-black dark:text-white p-2
+                transition-all duration-200 hover:scale-110 hover:opacity-70"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -478,17 +477,16 @@ const AgreementCarousel = () => {
             <button
               onClick={nextSlide}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20
-                bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full
-                text-black dark:text-white p-3 sm:p-4
-                transition-all duration-200 hover:scale-110 hover:bg-black/20 dark:hover:bg-white/20"
+                text-black dark:text-white p-2
+                transition-all duration-200 hover:scale-110 hover:opacity-70"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
 
             {/* Slide Counter - Mobile */}
-            <div className="absolute top-4 right-4 bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 text-black dark:text-white text-xs sm:text-sm font-medium">
+            <div className="absolute top-4 right-4 bg-black/5 dark:bg-white/5 rounded-lg px-2 py-1 text-black dark:text-white text-xs font-medium">
               {currentSlide + 1} / {slides.length}
             </div>
           </div>
@@ -550,7 +548,7 @@ const AgreementCarousel = () => {
             </button>
 
             {/* Slide Counter - Desktop */}
-            <div className="absolute top-4 right-8 bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-black dark:text-white text-sm font-medium">
+            <div className="absolute top-4 right-8 bg-black/5 dark:bg-white/5 rounded-lg px-3 py-1 text-black dark:text-white text-sm font-medium">
               {currentSlide + 1} / {slides.length}
             </div>
           </div>
