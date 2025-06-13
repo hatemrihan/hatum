@@ -327,7 +327,9 @@ const ProjectShowcaseSection = () => {
   };
 
   const handleProjectClick = (url: string) => {
-    window.open(url, '_blank');
+    if (typeof window !== 'undefined') {
+      window.open(url, '_blank');
+    }
   };
 
   const openOverlay = (index: number) => {

@@ -28,7 +28,6 @@ const ClientAgreementPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navScope, navAnimate] = useAnimate();
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   // Initialize theme toggle
   useEffect(() => {
@@ -103,6 +102,8 @@ const ClientAgreementPage = () => {
   };
 
   const ThemeToggleButton = () => {
+    const { theme, setTheme } = useTheme();
+    
     if (!mounted) return null;
     
     return (

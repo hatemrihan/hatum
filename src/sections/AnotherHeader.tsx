@@ -39,7 +39,6 @@ const AnotherHeader: FC = () => {
   const [navScope, navAnimate] = useAnimate();
   const [mounted, setMounted] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   // Initialize theme toggle
   useEffect(() => {
@@ -118,6 +117,8 @@ const AnotherHeader: FC = () => {
   };
 
   const ThemeToggleButton = () => {
+    const { theme, setTheme } = useTheme();
+    
     if (!mounted) return null;
     
     return (

@@ -21,9 +21,11 @@ entranceAnimation();
     setIsOpen(false);
     const url = new URL(e.currentTarget.href);
     const hash = url.hash;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    target.scrollIntoView({behavior:'smooth'});
+    if (typeof window !== 'undefined') {
+      const target = document.querySelector(hash);
+      if (!target) return;
+      target.scrollIntoView({behavior:'smooth'});
+    }
   }
   const [isOpen, setIsOpen] = useState(false);
   const inView = useInView(scope);
