@@ -1,15 +1,17 @@
 [build]
-  command = "npm run build"
-  publish = ".next"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  command = "npm run build:netlify"
+  publish = "out"
 
 [build.environment]
-  NEXT_USE_NETLIFY_EDGE = "true"
   NODE_VERSION = "18"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[redirects]]
+  from = "/hatum/*"
+  to = "/hatum/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200 
+  to = "/hatum/:splat"
+  status = 301 

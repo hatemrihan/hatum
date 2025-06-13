@@ -1,19 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
+import { useThemeSafe } from '@/hooks/useThemeSafe'
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
+  const { theme, setTheme } = useThemeSafe()
 
   return (
     <button

@@ -2,11 +2,11 @@
 const nextConfig = {
     output: 'export',
     basePath: '/hatum',
-    typescript:{
+    typescript: {
         ignoreBuildErrors: true,
     },
-    eslint:{
-        ignoreDuringBuilds:true,
+    eslint: {
+        ignoreDuringBuilds: true,
     },
     images: {
         unoptimized: true,
@@ -29,10 +29,6 @@ const nextConfig = {
     trailingSlash: true,
     // Ensure proper asset handling
     assetPrefix: '/hatum/',
-    // Disable image optimization for static export
-    images: {
-        unoptimized: true,
-    }
 };
 
 export default nextConfig;
