@@ -8,6 +8,12 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
     },
+    // SWC configuration to handle missing dependencies
+    swcMinify: true,
+    compiler: {
+        // Enable SWC minification
+        removeConsole: process.env.NODE_ENV === 'production',
+    },
     images: {
         unoptimized: true,
         domains: ['localhost'],
