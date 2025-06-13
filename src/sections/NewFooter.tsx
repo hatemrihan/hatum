@@ -3,11 +3,12 @@ import { useInView } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 
 const ShowcasyWebsite: React.FC = () => {
-  const {scope, entranceAnimation} =useTextRevealAnimation();
-  useEffect(()=>{
+  const {scope, entranceAnimation} = useTextRevealAnimation();
+  useEffect(() => {
 entranceAnimation();
-  },[entranceAnimation]);
-  const handleClickMobileNavItem= (e:React.MouseEvent<HTMLAnchorElement>) => {
+  }, [entranceAnimation]);
+  
+  const handleClickMobileNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setIsOpen(false);
     const url = new URL(e.currentTarget.href);
@@ -16,13 +17,16 @@ entranceAnimation();
     if (!target) return;
     target.scrollIntoView({behavior:'smooth'});
   }
+  
   const [isOpen, setIsOpen] = useState(false);
   const inView = useInView(scope);
-  useEffect(()=>{
-    if (inView){
+  
+  useEffect(() => {
+    if (inView) {
       entranceAnimation();
     }
   }, [inView, entranceAnimation]);
+  
   const socialLinks = [
     { 
       icon: (
@@ -80,39 +84,41 @@ entranceAnimation();
   };
 
   return (
-    <div className="bg-stone-900 text-white min-h-screen flex flex-col overflow-hidden sm:overflow-x-hidden" id="NewFooter">
-      <main className="flex-grow px-4 sm:px-8 pt-16">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold mb-8" ref={scope}>Get In Touch.</h1>
-          <div className="space-y-8">
-            <div className="flex items-center cursor-pointer group" onClick={() => handleClick('home')}>
-              <span className="text-3xl group-hover:text-gray-500 transition-colors duration-300">Home</span>
+    <div className="bg-stone-100 dark:bg-black text-black dark:text-white min-h-screen flex flex-col transition-colors duration-300" id="NewFooter">
+      <main className="flex-grow px-4 sm:px-6 lg:px-8 pt-16 lg:pt-24">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-8 lg:mb-12 text-left" style={{fontFamily: 'Panchang-Bold, sans-serif'}} ref={scope}>
+            Get In Touch.
+          </h1>
+          
+          <div className="space-y-6 lg:space-y-8">
+            <div className="flex items-center cursor-pointer group justify-start" onClick={() => handleClick('home')}>
+              <span className="text-2xl sm:text-3xl lg:text-4xl group-hover:text-black/70 dark:group-hover:text-white/70 transition-colors duration-300 font-medium">Home</span>
             </div>
-            <a href={socialLinks[0].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group">
-              <span className="text-3xl group-hover:text-gray-500 transition-colors duration-300">Instagram</span>
+            
+            <a href={socialLinks[0].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group justify-start">
+              <span className="text-2xl sm:text-3xl lg:text-4xl group-hover:text-black/70 dark:group-hover:text-white/70 transition-colors duration-300 font-medium">Instagram</span>
             </a>
-            <a href={socialLinks[1].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group">
-              <span className="text-3xl group-hover:text-gray-500 transition-colors duration-300">Facebook</span>
+            
+            <a href={socialLinks[1].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group justify-start">
+              <span className="text-2xl sm:text-3xl lg:text-4xl group-hover:text-black/70 dark:group-hover:text-white/70 transition-colors duration-300 font-medium">Facebook</span>
             </a>
-            <a href={socialLinks[2].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group">
-              <span className="text-3xl group-hover:text-gray-500 transition-colors duration-300">Gmail</span>
+            
+            <a href={socialLinks[2].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group justify-start">
+              <span className="text-2xl sm:text-3xl lg:text-4xl group-hover:text-black/70 dark:group-hover:text-white/70 transition-colors duration-300 font-medium">Gmail</span>
             </a>
-            <a href={socialLinks[3].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group">
-              <span className="text-3xl group-hover:text-gray-500 transition-colors duration-300">LinkedIn</span>
+            
+            <a href={socialLinks[3].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group justify-start">
+              <span className="text-2xl sm:text-3xl lg:text-4xl group-hover:text-black/70 dark:group-hover:text-white/70 transition-colors duration-300 font-medium">LinkedIn</span>
             </a>
-            <a href={socialLinks[4].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group">
-              <span className="text-3xl group-hover:text-gray-500 transition-colors duration-300">GitHub</span>
+            
+            <a href={socialLinks[4].url} target="_blank" rel="noopener noreferrer" className="flex items-center cursor-pointer group justify-start">
+              <span className="text-2xl sm:text-3xl lg:text-4xl group-hover:text-black/70 dark:group-hover:text-white/70 transition-colors duration-300 font-medium">GitHub</span>
             </a>
           </div>
         </div>
       </main>
 
-      <footer className="flex justify-start text-stone-400 text-xs p-4 sm:p-8 border-t border-black/10 space-y-4">
-        <div className="flex flex-col space-y-2">
-          <span className="text-lg font-medium"ref={scope}>I know you will like me</span>
-          <p className="text-stone-400 text-sm">Copyright &copy; HATUM &bull; All rights reserved</p>
-        </div>
-      </footer>
     </div>
   );
 };

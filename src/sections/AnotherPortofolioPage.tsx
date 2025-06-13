@@ -1,17 +1,21 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
 import holaImage from '../assets/images/hola-image.jpg'
 import boundImage from '../assets/images/bound-image.jpg';
 import useTextRevealAnimation from '@/hooks/useTextRevealAnimation';
-import { useInView } from 'motion/react';
 import heroImage from '../assets/images/hero-image.jpg'
 import nadaImage from '../assets/images/nada-image.JPG'
 
 const AnotherPortofolioPage = () => {
   const {scope, entranceAnimation} =useTextRevealAnimation();
+  const sectionRef = React.useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  
   useEffect(()=>{
 entranceAnimation();
   },[entranceAnimation]);
+  
   const handleClickMobileNavItem= (e:React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setIsOpen(false);
@@ -29,99 +33,165 @@ entranceAnimation();
     }
   }, [inView, entranceAnimation]);
   return (
-    <div className="min-h-screen bg-stone-900 flex flex-col" id="AnotherPortofolioPage">
-    <div className="container mx-auto px-4 py-8 flex-grow">
-    <h1 className="text-sm mb-12 font-bold text-gray-300 leading-none text-center" ref={scope}>
+    <div ref={sectionRef} className="min-h-screen bg-stone-100 dark:bg-black text-black dark:text-white flex flex-col transition-colors duration-300" id="AnotherPortofolioPage">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 flex-grow">
+        <motion.h1 
+          className="text-xs sm:text-sm mb-8 lg:mb-12 font-bold text-black/70 dark:text-white/70 leading-none text-center"
+          ref={scope}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 0.7, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
            Selected work
-          </h1>
-      <div className="grid grid-cols-12 gap-4">
-        {/* Large "less." Typography */}
-        <div className="col-span-12 md:col-span-6 flex items-center">
-          <h1 className="text-7xl  lg:text-8xl font-bold text-white leading-none" ref={scope}>
+        </motion.h1>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          {/* Large Typography */}
+          <motion.div 
+            className="lg:col-span-6 flex items-center justify-center lg:justify-start mb-8 lg:mb-0"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold text-black dark:text-white leading-none" ref={scope}>
             more
           </h1>
-        </div>
+          </motion.div>
 
         {/* Image Sections */}
-        <div className="col-span-12 md:col-span-6 grid grid-cols-2 gap-4">
-          {/* Portrait Image Section */}
-          <div className="col-span-1 space-y-4">
-            <div className="text-sm text-gray-300 uppercase tracking-wider"ref={scope}>
+          <motion.div 
+            className="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            {/* Project 1 */}
+            <motion.div 
+              className="col-span-1 space-y-3 sm:space-y-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              <div className="text-xs sm:text-sm text-black/70 dark:text-white/70 uppercase tracking-wider" ref={scope}>
               Project
             </div>
-            <div className="aspect-[3/4] bg-gray-100">
-            <a href="https://naderemad.netlify.app">
+              <motion.div 
+                className="aspect-[3/4] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <a href="https://naderemad.netlify.app" target="_blank" rel="noopener noreferrer">
               <Image 
                 src={boundImage} 
-                alt="Portrait" 
-                className="w-full h-full object-cover grayscale cursor-pointer"
+                    alt="Nader Emad Portfolio" 
+                    className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
               />
               </a>
-            </div>
-            <div className="text-sm text-gray-300">
+              </motion.div>
+              <div className="text-xs sm:text-sm text-black/80 dark:text-white/80">
               Nader Emad — STYLE&apos;47
             </div>
-          </div>
+            </motion.div>
 
-          {/* Editorial Image Section */}
-          <div className="col-span-1 space-y-4">
-            <div className="text-sm text-gray-300 uppercase tracking-wider" ref={scope}>
+            {/* Project 2 */}
+            <motion.div 
+              className="col-span-1 space-y-3 sm:space-y-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <div className="text-xs sm:text-sm text-black/70 dark:text-white/70 uppercase tracking-wider" ref={scope}>
               Project
             </div>
-            <div className="aspect-[3/4] bg-gray-100">
-            <a href="https://iflagg.netlify.app">
+              <motion.div 
+                className="aspect-[3/4] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <a href="https://iflagg.netlify.app" target="_blank" rel="noopener noreferrer">
               <Image 
                 src={holaImage} 
-                alt="Editorial" 
-                className="w-full h-full object-cover grayscale cursor-pointer"
+                    alt="Iflag Portfolio" 
+                    className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
               />
               </a>
-            </div>
-            <div className="text-sm text-gray-300">
+              </motion.div>
+              <div className="text-xs sm:text-sm text-black/80 dark:text-white/80">
               Iflag — PORT. GQ
             </div>
-          </div>
-          <div className="col-span-1 space-y-4">
-            <div className="text-sm text-gray-300 uppercase tracking-wider" ref={scope}>
+            </motion.div>
+            
+            {/* Project 3 */}
+            <motion.div 
+              className="col-span-1 space-y-3 sm:space-y-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+            >
+              <div className="text-xs sm:text-sm text-black/70 dark:text-white/70 uppercase tracking-wider" ref={scope}>
               Project
             </div>
-            <div className="aspect-[3/4] bg-gray-100">
-            <a href="https://nadamahmoudd.wixstudio.com/nada">
+              <motion.div 
+                className="aspect-[3/4] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <a href="https://nadamahmoudd.wixstudio.com/nada" target="_blank" rel="noopener noreferrer">
               <Image 
                 src={nadaImage} 
-                alt="Editorial" 
-                className="w-full h-full object-cover grayscale cursor-pointer"
+                    alt="Nada Portfolio" 
+                    className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
               />
               </a>
-            </div>
-            <div className="text-sm text-gray-300">
+              </motion.div>
+              <div className="text-xs sm:text-sm text-black/80 dark:text-white/80">
               Nada — Model. GQ
             </div>
-          </div>
-          <div className="col-span-1 space-y-4">
-            <div className="text-sm text-gray-300 uppercase tracking-wider" ref={scope}>
+            </motion.div>
+            
+            {/* Project 4 */}
+            <motion.div 
+              className="col-span-1 space-y-3 sm:space-y-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+            >
+              <div className="text-xs sm:text-sm text-black/70 dark:text-white/70 uppercase tracking-wider" ref={scope}>
               Project
             </div>
-            <div className="aspect-[3/4] bg-gray-100">
-            <a href="https://hatemrihan.github.io/TOMM-WEB/h.HTML?fbclid=PAZXh0bgNhZW0CMTEAAaYYRv6Z8j2U5HkWj2p4e6y7OVWsEcNQYfz9PA-SYYdgVTgyaRf_ly5luTY_aem_rphh00mGa1FsY07bJuMr4w">
+              <motion.div 
+                className="aspect-[3/4] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <a href="https://hatemrihan.github.io/TOMM-WEB/h.HTML?fbclid=PAZXh0bgNhZW0CMTEAAaYYRv6Z8j2U5HkWj2p4e6y7OVWsEcNQYfz9PA-SYYdgVTgyaRf_ly5luTY_aem_rphh00mGa1FsY07bJuMr4w" target="_blank" rel="noopener noreferrer">
               <Image 
                 src={heroImage} 
-                alt="Editorial" 
-                className="w-full h-full object-cover grayscale cursor-pointer"
+                    alt="Hatum Portfolio" 
+                    className="w-full h-full object-cover hover:grayscale-0 grayscale cursor-pointer transition-all duration-300 hover:scale-105"
               />
               </a>
-            </div>
-            <div className="text-sm text-gray-300">
+              </motion.div>
+              <div className="text-xs sm:text-sm text-black/80 dark:text-white/80">
               Hatum — First. One
             </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </div>
-    <h1 className="text-sm mb-12 font-bold text-gray-300 leading-none text-center" ref={scope}>
+      
+      <motion.div 
+        className="text-center pb-8 lg:pb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 1.1 }}
+      >
+        <h1 className="text-xs sm:text-sm font-bold text-black/70 dark:text-white/70 leading-none" ref={scope}>
            Click it to see
           </h1>
-    <div className=" w-full border-t border-gray-700 my-10"></div>
+      </motion.div>
+      
+      <div className="w-full border-t border-black/20 dark:border-white/20 mx-4 sm:mx-6 lg:mx-8"></div>
   </div>
   )
 }
