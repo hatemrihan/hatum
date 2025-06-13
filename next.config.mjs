@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
-    basePath: '/hatum',
+    // basePath: '/hatum',
     typescript: {
         ignoreBuildErrors: true,
     },
@@ -28,7 +28,7 @@ const nextConfig = {
     // Add trailing slashes for better compatibility
     trailingSlash: true,
     // Ensure proper asset handling
-    assetPrefix: '/hatum/',
+    // assetPrefix: '/hatum/',
 };
 
 export default nextConfig;
