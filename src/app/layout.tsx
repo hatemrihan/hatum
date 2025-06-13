@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import {Archivo } from 'next/font/google';
 import "./globals.css";
-import { cn } from "@/components/lib/utils";
+import { cn } from "../components/lib/utils";
 
 const archivo = Archivo({
   display: "swap",

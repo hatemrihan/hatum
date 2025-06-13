@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import holaImage from '../assets/images/hola-image.jpg'
 import boundImage from '../assets/images/bound-image.jpg';
-import useTextRevealAnimation from '@/hooks/useTextRevealAnimation';
+import useTextRevealAnimation from '../hooks/useTextRevealAnimation';
 import heroImage from '../assets/images/hero-image.jpg'
 import nadaImage from '../assets/images/nada-image.JPG'
 

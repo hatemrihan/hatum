@@ -1,4 +1,4 @@
-import useTextRevealAnimation from '@/hooks/useTextRevealAnimation';
+import useTextRevealAnimation from '../hooks/useTextRevealAnimation';
 import { useInView } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 

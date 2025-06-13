@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import useTextRevealAnimation from '@/hooks/useTextRevealAnimation';
+import useTextRevealAnimation from '../hooks/useTextRevealAnimation';
 import Link from "next/link";
 
 // Social icons (replace with your own SVGs or use a library if you have one)
