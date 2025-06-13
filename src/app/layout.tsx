@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import {Archivo } from 'next/font/google';
 import "./globals.css";
 import { cn } from "@/components/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import dynamic from 'next/dynamic';
+
+// Dynamically import ThemeProvider with no SSR
+const ThemeProvider = dynamic(
+  () => import("@/components/theme-provider").then((mod) => ({ default: mod.ThemeProvider })),
+  { ssr: false }
+);
 
 const archivo = Archivo({
   display: "swap",

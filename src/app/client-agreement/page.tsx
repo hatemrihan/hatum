@@ -279,70 +279,7 @@ const ClientAgreementPage = () => {
         </div>
       </section>
 
-      {/* WebGL Script */}
-      {typeof window !== 'undefined' && (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // WebGL Background Script
-              if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-              const script = document.createElement('script');
-              script.src = 'https://cdn.jsdelivr.net/npm/ogl@0.0.82/dist/ogl.umd.js';
-              script.onload = function() {
-                function initWebGL() {
-                  const { Renderer, Camera, Geometry, Program, Mesh, Vec2, Vec3, Color, GPGPU } = OGL;
-                  
-                  const container = document.getElementById('webgl-background');
-                  if (!container) return;
-                  
-                  const renderer = new Renderer({ dpr: 1, alpha: true });
-                  const gl = renderer.gl;
-                  container.appendChild(gl.canvas);
-                  
-                  const camera = new Camera(gl, { fov: 45 });
-                  camera.position.set(0, 0, 5);
-                  
-                  const time = { value: 0 };
-                  const mouse = { value: new Vec2() };
-                  
-                  function resize() {
-renderer.setSize(container.offsetWidth, container.offsetHeight);
-camera.perspective({ aspect: container.offsetWidth / container.offsetHeight });
-                  }
-                  
-                  resize();
-                  window.addEventListener('resize', resize);
-                  
-                  // Simplified particle system
-                  const numParticles = 32768;
-                  const positions = new Float32Array(numParticles * 4);
-                  const velocities = new Float32Array(numParticles * 4);
-                  
-                  for (let i = 0; i < numParticles; i++) {
-const x = (Math.random() - 0.5) * 2;
-const y = (Math.random() - 0.5) * 2;
-const z = (Math.random() - 0.5) * 2;
-positions.set([x, y, z, 1], i * 4);
-velocities.set([0, 0, 0, 1], i * 4);
-                  }
-                  
-                  function animate(t) {
-requestAnimationFrame(animate);
-time.value = t * 0.001;
-renderer.render({ scene: null, camera });
-                  }
-                  
-                  animate();
-                }
-                
-                setTimeout(initWebGL, 1000);
-              };
-              document.head.appendChild(script);
-            }
-          `,
-        }}
-      />
-      )}
+      {/* WebGL Background - Removed to prevent SSR Html import errors */}
     </div>
   );
 };
