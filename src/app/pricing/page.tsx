@@ -131,7 +131,7 @@ const PricingPage = () => {
           {/* Hero Text */}
           <div className="text-center mb-8 lg:mb-16 w-full">
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-black uppercase leading-none mb-4 lg:mb-8 w-full"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl xl:text-9xl font-black uppercase leading-none mb-4 lg:mb-8 w-full"
               style={{ 
                 letterSpacing: '0.1em',
                 wordBreak: 'keep-all',
