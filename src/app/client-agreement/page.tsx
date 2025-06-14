@@ -5,6 +5,7 @@ import { motion, useAnimate } from "framer-motion";
 import { SimpleThemeToggle } from '../../components/SimpleThemeToggle';
 
 import Link from 'next/link';
+import SimpleVideo from "../../components/SimpleVideo";
 
 const navItems = [
   {
@@ -242,18 +243,16 @@ const ClientAgreementPage = () => {
             transition={{ duration: 1, delay: 0.4 }}
           >
             <div className="relative aspect-[4/5] sm:aspect-[3/2] lg:aspect-[16/9] overflow-hidden shadow-2xl rounded-lg">
-              <video
+              <SimpleVideo
+                src="/videos/octat.mp4"
                 className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                playsInline={true}
                 controls={false}
                 preload="auto"
-              >
-                <source src="/videos/octat.octet-stream" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              />
               
               {/* Video Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-100/20 dark:from-black/20 via-transparent to-transparent pointer-events-none"></div>
