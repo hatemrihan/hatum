@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import OptimizedVideo from '../components/OptimizedVideo';
+import RobustVideo from '../components/RobustVideo';
 import '../assets/Fonts/WEB/css/panchang.css';
 
 // Using public paths for images (more reliable for Next.js)
@@ -120,22 +120,34 @@ const Projects = () => {
     };
     document.addEventListener('keydown', handleKeyDown);
     
-    // Force video playback on mobile
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-      video.addEventListener('loadedmetadata', () => {
-        video.play().catch(() => {
-          console.log('Video autoplay failed, user interaction required');
+    // Enhanced video playback handling
+    const handleVideoPlayback = () => {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        // Immediate play attempt
+        if (video.paused) {
+          video.play().catch(() => {
+            console.log('Video autoplay requires user interaction');
+          });
+        }
+        
+        // Force play on any interaction
+        const playOnInteraction = () => {
+          if (video.paused) {
+            video.play().catch(() => {});
+          }
+        };
+        
+        ['click', 'touchstart', 'scroll', 'mousemove'].forEach(event => {
+          document.addEventListener(event, playOnInteraction, { once: true });
         });
       });
-      
-      const playVideo = () => {
-        video.play().catch(() => {});
-        document.removeEventListener('touchstart', playVideo);
-      };
-      
-      document.addEventListener('touchstart', playVideo, { once: true });
-    });
+    };
+    
+    // Run immediately and after a short delay
+    handleVideoPlayback();
+    setTimeout(handleVideoPlayback, 100);
+    setTimeout(handleVideoPlayback, 500);
     
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
@@ -150,7 +162,7 @@ const Projects = () => {
   const renderMedia = (project: Project, className: string) => {
     if (project.isVideo) {
       return (
-        <OptimizedVideo
+        <RobustVideo
           src={project.mainImage}
           className={className}
           autoPlay={true}

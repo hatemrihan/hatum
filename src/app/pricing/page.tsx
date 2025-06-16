@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import PricingLoader from '../../components/PricingLoader';
+import RobustVideo from '../../components/RobustVideo';
 
 // Using public paths for images
 import Footer from '../../sections/Footer';
@@ -175,18 +176,16 @@ const PricingPage = () => {
             transition={{ duration: 1, delay: 0.8 }}
           >
             <div className="relative aspect-[4/5] sm:aspect-[3/2] lg:aspect-[16/9] overflow-hidden shadow-2xl rounded-lg">
-              <video
+              <RobustVideo
+                src="/videos/about.mp4"
                 className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                playsInline={true}
                 controls={false}
                 preload="auto"
-              >
-                <source src="/videos/about.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              />
               
               {/* Video Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-100/20 dark:from-black/20 via-transparent to-transparent pointer-events-none"></div>
@@ -395,18 +394,16 @@ const ProjectShowcaseSection = () => {
   const renderMedia = (project: Project, className: string) => {
     if (project.isVideo) {
       return (
-        <video
+        <RobustVideo
+          src={project.mainImage}
           className={className}
-          autoPlay
-          muted
-          loop
-          playsInline
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          playsInline={true}
           controls={false}
           preload="auto"
-        >
-          <source src={project.mainImage} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
       );
     } else {
       return renderImage(project.mainImage, project.title, className);

@@ -5,7 +5,7 @@ import { motion, useAnimate } from "framer-motion";
 import { SimpleThemeToggle } from '../../components/SimpleThemeToggle';
 
 import Link from 'next/link';
-import SimpleVideo from "../../components/SimpleVideo";
+import RobustVideo from "../../components/RobustVideo";
 
 const navItems = [
   {
@@ -243,7 +243,7 @@ const ClientAgreementPage = () => {
             transition={{ duration: 1, delay: 0.4 }}
           >
             <div className="relative aspect-[4/5] sm:aspect-[3/2] lg:aspect-[16/9] overflow-hidden shadow-2xl rounded-lg">
-              <SimpleVideo
+              <RobustVideo
                 src="/videos/octat.mp4"
                 className="w-full h-full object-cover"
                 autoPlay={true}
